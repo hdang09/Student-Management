@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class StudentCreateDTO {
+public class StudentDTO {
     private String fullName;
     private String rollNumber;
     private Gender gender;

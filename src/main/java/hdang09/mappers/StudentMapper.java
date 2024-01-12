@@ -1,6 +1,6 @@
 package hdang09.mappers;
 
-import hdang09.dtos.StudentCreateDTO;
+import hdang09.dtos.StudentDTO;
 import hdang09.entities.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -9,5 +9,5 @@ import org.mapstruct.factory.Mappers;
 public interface StudentMapper {
     StudentMapper INSTANCE = Mappers.getMapper(StudentMapper.class);
 
-    Student toEntity(StudentCreateDTO studentDTO);
+    Student toEntity(StudentDTO studentDTO);
 }

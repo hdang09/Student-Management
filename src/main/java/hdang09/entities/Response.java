@@ -12,4 +12,9 @@ public class Response<T> {
     private ResponseStatus status;
     private String message;
     private T data;
+
+    public Response(ResponseStatus status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 }

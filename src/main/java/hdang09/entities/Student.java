@@ -2,11 +2,10 @@ package hdang09.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import hdang09.constants.Gender;
 import hdang09.constants.StudentStatus;
@@ -26,9 +25,8 @@ import lombok.ToString;
 public class Student {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
-    private String studentId = "123"; // TODO: Change to UUID
+    private UUID studentId = UUID.randomUUID();
 
     @Column(name = "full_name")
     private String fullName;

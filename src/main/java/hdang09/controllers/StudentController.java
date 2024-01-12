@@ -1,6 +1,6 @@
 package hdang09.controllers;
 
-import hdang09.dtos.StudentCreateDTO;
+import hdang09.dtos.StudentDTO;
 import hdang09.entities.Response;
 import hdang09.entities.Student;
 import hdang09.services.StudentService;
@@ -29,18 +29,18 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response<Student>> createStudent(@Valid @RequestBody StudentCreateDTO student) {
-        return studentService.createStudent(student);
+    public ResponseEntity<Response<Student>> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
+        return studentService.createStudent(studentDTO);
     }
 
-    @PutMapping("/update/{studentId}")
-    public ResponseEntity<Response> updateStudent(@RequestBody Student student, @PathVariable String studentId) {
-        return studentService.updateStudent(student, studentId);
+    @PutMapping("/update/{rollNumber}")
+    public ResponseEntity<Response<Student>> updateStudent(@Valid @RequestBody StudentDTO studentDTO, @PathVariable String rollNumber) {
+        return studentService.updateStudent(studentDTO, rollNumber);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Response> deleteStudent(String studentId) {
-        return studentService.deleteStudent(studentId);
+    public ResponseEntity<Response> deleteStudent(String rollNumber) {
+        return studentService.deleteStudent(rollNumber);
     }
 
     @GetMapping("/search/{keyword}")
