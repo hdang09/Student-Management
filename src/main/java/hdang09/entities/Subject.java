@@ -1,8 +1,11 @@
 package hdang09.entities;
 
+import hdang09.constants.EntityStatus;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "subject")
@@ -14,9 +17,9 @@ import javax.persistence.*;
 public class Subject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "subject_id")
-    private String subjectId;
+    private UUID subjectId;
 
     @Column(name = "subject_code")
     private String subjectCode;
@@ -29,5 +32,9 @@ public class Subject {
 
     @Column(name = "credit_number")
     private int creditNumber;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private EntityStatus status = EntityStatus.ACTIVE;
 }
 

@@ -1,14 +1,12 @@
 package hdang09.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import hdang09.constants.Gender;
-import hdang09.constants.StudentStatus;
+import hdang09.constants.EntityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +24,8 @@ public class Student {
 
     @Id
     @Column(name = "student_id")
-    private UUID studentId = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID studentId;
 
     @Column(name = "full_name")
     private String fullName;
@@ -35,6 +34,7 @@ public class Student {
     private String rollNumber;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column(name = "date_of_birth")
@@ -53,6 +53,7 @@ public class Student {
     private String address;
 
     @Column(name = "status")
-    private StudentStatus status = StudentStatus.ACTIVE;
+    @Enumerated(EnumType.STRING)
+    private EntityStatus status = EntityStatus.ACTIVE;
 }
 

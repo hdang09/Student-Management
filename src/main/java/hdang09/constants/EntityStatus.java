@@ -1,6 +1,6 @@
 package hdang09.constants;
 
-public enum StudentStatus {
+public enum EntityStatus {
     ACTIVE,
     INACTIVE
 }

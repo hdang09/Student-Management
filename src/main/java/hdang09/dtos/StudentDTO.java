@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class StudentDTO {
-    private String fullName;
+    private String fullName; // TODO: Add validation bean
     private String rollNumber;
     private Gender gender;
     private LocalDateTime dateOfBirth;

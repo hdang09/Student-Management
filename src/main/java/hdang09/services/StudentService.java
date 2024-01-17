@@ -1,7 +1,6 @@
 package hdang09.services;
 
 import hdang09.constants.ResponseStatus;
-import hdang09.constants.StudentStatus;
 import hdang09.dtos.StudentDTO;
 import hdang09.entities.Response;
 import hdang09.entities.Student;
@@ -26,7 +25,7 @@ public class StudentService {
     }
 
     public ResponseEntity<Response<List<Student>>> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
+        List<Student> students = studentRepository.getActiveStudents();
 
         Response<List<Student>> response = new Response<>(ResponseStatus.SUCCESS, "Get all students successfully", students);
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -41,10 +40,11 @@ public class StudentService {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    public ResponseEntity<Response<Student>> updateStudent(StudentDTO studentDTO, String rollNumber) {
+    // TODO: Test this function
+    public ResponseEntity<Response<Student>> updateStudent(StudentDTO studentDTO, UUID studentId) {
         // Check if student exists
-        UUID studentId = studentRepository.getStudentIdByRollNumber(rollNumber);
-        if (studentId == null) {
+        Student findStudent = studentRepository.findById(studentId).orElse(null);
+        if (findStudent == null) {
             Response<Student> response = new Response<>(ResponseStatus.ERROR, "Cannot find student");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
@@ -52,20 +52,18 @@ public class StudentService {
         // Update student
         Student student = StudentMapper.INSTANCE.toEntity(studentDTO);
         student.setStudentId(studentId);
-        Student createdStudent = studentRepository.save(student);
+        Student updateStudent = studentRepository.save(student);
 
-        Response<Student> response = new Response<>(ResponseStatus.SUCCESS, "Updated", createdStudent);
+        Response<Student> response = new Response<>(ResponseStatus.SUCCESS, "Updated", updateStudent);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    // TODO: Fix Response raw type
     public ResponseEntity<Response> deleteStudent(String rollNumber) {
-        Student deleteStudent = studentRepository.findByRollNumber(rollNumber);
+        int numberOfDelete = studentRepository.deleteStudent(rollNumber);
 
         // If student is found, set status to INACTIVE
-        if (deleteStudent != null) {
-            deleteStudent.setStatus(StudentStatus.INACTIVE);
-            studentRepository.save(deleteStudent);
-
+        if (numberOfDelete != 0) {
             Response response = new Response(ResponseStatus.SUCCESS, "Deleted");
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }

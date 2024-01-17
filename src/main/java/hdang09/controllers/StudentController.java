@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/students")
@@ -33,9 +34,9 @@ public class StudentController {
         return studentService.createStudent(studentDTO);
     }
 
-    @PutMapping("/update/{rollNumber}")
-    public ResponseEntity<Response<Student>> updateStudent(@Valid @RequestBody StudentDTO studentDTO, @PathVariable String rollNumber) {
-        return studentService.updateStudent(studentDTO, rollNumber);
+    @PutMapping("/update/{studentId}")
+    public ResponseEntity<Response<Student>> updateStudent(@Valid @RequestBody StudentDTO studentDTO, @PathVariable UUID studentId) {
+        return studentService.updateStudent(studentDTO, studentId);
     }
 
     @DeleteMapping("/delete")
