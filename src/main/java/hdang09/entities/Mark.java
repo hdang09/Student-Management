@@ -26,10 +26,13 @@ public class Mark {
     private Subject subject;
 
     @Column(name = "mark")
-    private int mark;
+    private float mark;
 
     @Column(name = "input_date")
-    private LocalDateTime inputDate;
+    private LocalDateTime inputDate = LocalDateTime.now();
+
+    @Column(name = "update_date")
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     @Column(name = "note")
     private String note;

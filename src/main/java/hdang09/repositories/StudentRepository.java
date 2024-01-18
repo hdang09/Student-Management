@@ -13,8 +13,7 @@ import java.util.UUID;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, UUID> {
 
-    @Query("SELECT s.studentId FROM Student s WHERE s.rollNumber = ?1")
-    UUID getStudentIdByRollNumber(String rollNumber);
+    Student findByRollNumber(String rollNumber);
 
     @Query("SELECT s FROM Student s WHERE s.status = 'ACTIVE'")
     List<Student> getActiveStudents();

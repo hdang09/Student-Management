@@ -13,6 +13,8 @@ import java.util.UUID;
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, UUID> {
 
+    Subject findBySubjectCode(String subjectCode);
+
     @Query("SELECT s FROM Subject s WHERE s.status = 'ACTIVE'")
     List<Subject> getActiveSubjects();
 
