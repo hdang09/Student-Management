@@ -14,12 +14,8 @@ import java.time.LocalDateTime;
 @ToString
 public class Mark {
 
-    @Id
-    @Column(name = "mark_id")
-    private String markId;
-
-    @Column(name = "subject_id")
-    private String subjectId;
+    @EmbeddedId
+    private MarkId id;
 
     @Column(name = "mark")
     private int mark;
