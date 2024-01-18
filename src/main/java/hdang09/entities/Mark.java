@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "mark")
+@IdClass(MarkId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,8 +15,15 @@ import java.time.LocalDateTime;
 @ToString
 public class Mark {
 
-    @EmbeddedId
-    private MarkId id;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     @Column(name = "mark")
     private int mark;
