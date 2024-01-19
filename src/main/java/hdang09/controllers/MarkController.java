@@ -32,4 +32,9 @@ public class MarkController {
     public ResponseEntity<Response<Mark>> addMark(@Valid @RequestBody MarkDTO markDTO) {
         return markService.addMark(markDTO);
     }
+
+    @GetMapping("/subject/{subjectCode}")
+    public ResponseEntity<Response<List<Mark>>> getMarksBySubjectCode(@PathVariable String subjectCode) {
+        return markService.getMarksBySubjectCode(subjectCode);
+    }
 }

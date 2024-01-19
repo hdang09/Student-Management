@@ -62,4 +62,19 @@ public class MarkService {
         Response<Mark> response = new Response<>(ResponseStatus.SUCCESS, "Add mark successfully", savedMark);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    public ResponseEntity<Response<List<Mark>>> getMarksBySubjectCode(String subjectCode) {
+        // Find subject
+        Subject subject = subjectRepository.findBySubjectCode(subjectCode);
+        if (subject == null) {
+            Response<List<Mark>> response = new Response<>(ResponseStatus.ERROR, "Subject not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+        // Get marks by subject
+        List<Mark> marks = markRepository.findBySubject(subject);
+
+        Response<List<Mark>> response = new Response<>(ResponseStatus.SUCCESS, "Get marks by subject successfully", marks);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }

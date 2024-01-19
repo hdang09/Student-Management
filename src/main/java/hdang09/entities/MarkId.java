@@ -20,5 +20,18 @@ public class MarkId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MarkId)) return false;
+        MarkId that = (MarkId) o;
+        return getStudent().equals(that.getStudent()) && getSubject().equals(that.getSubject());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }
 
