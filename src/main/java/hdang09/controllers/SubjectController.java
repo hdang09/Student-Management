@@ -4,6 +4,8 @@ import hdang09.dtos.requests.SubjectDTO;
 import hdang09.entities.Response;
 import hdang09.entities.Subject;
 import hdang09.services.SubjectService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/subject")
 @CrossOrigin
+@Tag(name = "Subject")
+@SecurityRequirement(name = "bearerAuth")
 public class SubjectController {
 
     private final SubjectService subjectService;

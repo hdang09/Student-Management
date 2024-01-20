@@ -6,6 +6,8 @@ import hdang09.dtos.requests.MarkUpdateDTO;
 import hdang09.entities.Mark;
 import hdang09.entities.Response;
 import hdang09.services.MarkService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/mark")
 @CrossOrigin
+@Tag(name = "Mark")
+@SecurityRequirement(name = "bearerAuth")
 public class MarkController {
 
     private final MarkService markService;
