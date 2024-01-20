@@ -1,11 +1,8 @@
-package hdang09.dtos;
+package hdang09.dtos.requests;
 
 import hdang09.constants.Gender;
 import hdang09.constants.Regex;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +23,7 @@ public class StudentDTO {
     @NotNull(message = "Gender ('MALE', 'FEMALE') is required")
     private Gender gender;
 
-    @NotBlank(message = "Date of birth is required")
+    @PastOrPresent(message = "Date of birth must be in the past")
     private LocalDateTime dateOfBirth;
 
     @NotBlank(message = "ID card is required")

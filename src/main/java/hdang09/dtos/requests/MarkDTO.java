@@ -1,4 +1,4 @@
-package hdang09.dtos;
+package hdang09.dtos.requests;
 
 import hdang09.constants.Regex;
 import jakarta.validation.constraints.Max;

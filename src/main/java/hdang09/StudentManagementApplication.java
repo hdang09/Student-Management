@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 @OpenAPIDefinition(
 		info = @Info(
@@ -14,9 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				description = "An API for managing students"
 		)
 )
-public class StudentMgmtApplication {
+public class StudentManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StudentMgmtApplication.class, args);
+		SpringApplication.run(StudentManagementApplication.class, args);
 	}
 }

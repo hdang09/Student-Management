@@ -1,7 +1,7 @@
 package hdang09.services;
 
 import hdang09.constants.ResponseStatus;
-import hdang09.dtos.StudentDTO;
+import hdang09.dtos.requests.StudentDTO;
 import hdang09.entities.Response;
 import hdang09.entities.Student;
 import hdang09.mappers.StudentMapper;

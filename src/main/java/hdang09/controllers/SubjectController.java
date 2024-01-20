@@ -1,6 +1,6 @@
 package hdang09.controllers;
 
-import hdang09.dtos.SubjectDTO;
+import hdang09.dtos.requests.SubjectDTO;
 import hdang09.entities.Response;
 import hdang09.entities.Subject;
 import hdang09.services.SubjectService;

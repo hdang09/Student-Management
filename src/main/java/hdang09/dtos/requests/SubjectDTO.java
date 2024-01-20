@@ -1,4 +1,4 @@
-package hdang09.dtos;
+package hdang09.dtos.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
