@@ -2,7 +2,7 @@ package hdang09.controllers;
 
 import hdang09.dtos.requests.LoginDTO;
 import hdang09.dtos.responses.TokenDTO;
-import hdang09.entities.Response;
+import hdang09.models.Response;
 import hdang09.services.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

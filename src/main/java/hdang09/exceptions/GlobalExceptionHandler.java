@@ -1,7 +1,7 @@
 package hdang09.exceptions;
 
-import hdang09.constants.ResponseStatus;
-import hdang09.entities.Response;
+import hdang09.enums.ResponseStatus;
+import hdang09.models.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,6 +1,6 @@
 package hdang09.dtos.requests;
 
-import hdang09.constants.Gender;
+import hdang09.enums.Gender;
 import hdang09.constants.Regex;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package hdang09.controllers;
 
 import hdang09.dtos.requests.StudentDTO;
-import hdang09.entities.Response;
+import hdang09.models.Response;
 import hdang09.entities.Student;
 import hdang09.services.StudentService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

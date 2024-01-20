@@ -1,6 +1,6 @@
-package hdang09.entities;
+package hdang09.models;
 
-import hdang09.constants.ResponseStatus;
+import hdang09.enums.ResponseStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import hdang09.constants.Gender;
-import hdang09.constants.EntityStatus;
+import hdang09.enums.Gender;
+import hdang09.enums.EntityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

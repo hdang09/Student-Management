@@ -1,9 +1,9 @@
 package hdang09.services;
 
-import hdang09.constants.ResponseStatus;
+import hdang09.enums.ResponseStatus;
 import hdang09.dtos.requests.LoginDTO;
 import hdang09.dtos.responses.TokenDTO;
-import hdang09.entities.Response;
+import hdang09.models.Response;
 import hdang09.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

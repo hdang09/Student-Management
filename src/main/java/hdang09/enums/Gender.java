@@ -1,4 +1,4 @@
-package hdang09.constants;
+package hdang09.enums;
 
 public enum Gender {
     MALE,

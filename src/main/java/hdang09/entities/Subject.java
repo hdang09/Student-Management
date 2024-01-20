@@ -1,6 +1,6 @@
 package hdang09.entities;
 
-import hdang09.constants.EntityStatus;
+import hdang09.enums.EntityStatus;
 import lombok.*;
 
 import jakarta.persistence.*;

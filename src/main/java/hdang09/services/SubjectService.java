@@ -1,8 +1,8 @@
 package hdang09.services;
 
-import hdang09.constants.ResponseStatus;
+import hdang09.enums.ResponseStatus;
 import hdang09.dtos.requests.SubjectDTO;
-import hdang09.entities.Response;
+import hdang09.models.Response;
 import hdang09.entities.Subject;
 import hdang09.mappers.SubjectMapper;
 import hdang09.repositories.SubjectRepository;

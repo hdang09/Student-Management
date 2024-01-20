@@ -4,7 +4,7 @@ import hdang09.dtos.requests.MarkDTO;
 import hdang09.dtos.requests.MarkDeleteDTO;
 import hdang09.dtos.requests.MarkUpdateDTO;
 import hdang09.entities.Mark;
-import hdang09.entities.Response;
+import hdang09.models.Response;
 import hdang09.services.MarkService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
