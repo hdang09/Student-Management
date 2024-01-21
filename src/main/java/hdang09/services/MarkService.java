@@ -1,7 +1,6 @@
 package hdang09.services;
 
 import hdang09.dtos.responses.MarkResponseDTO;
-import hdang09.entities.MarkId;
 import hdang09.enums.ResponseStatus;
 import hdang09.dtos.requests.MarkDTO;
 import hdang09.dtos.requests.MarkDeleteDTO;
@@ -62,6 +61,13 @@ public class MarkService {
         if (subject == null) {
             Response<MarkResponseDTO> response = new Response<>(ResponseStatus.ERROR, "Subject not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+        // Check mark existed
+        Mark findMark = markRepository.findByRollNumberAndSubjectCode(markDTO.getRollNumber(), markDTO.getSubjectCode());
+        if (findMark != null) {
+            Response<MarkResponseDTO> response = new Response<>(ResponseStatus.ERROR, "Mark existed!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
         // Create mark
