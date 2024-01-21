@@ -3,7 +3,7 @@ package hdang09.controllers;
 import hdang09.dtos.requests.MarkDTO;
 import hdang09.dtos.requests.MarkDeleteDTO;
 import hdang09.dtos.requests.MarkUpdateDTO;
-import hdang09.entities.Mark;
+import hdang09.dtos.responses.MarkResponseDTO;
 import hdang09.models.Response;
 import hdang09.services.MarkService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -30,17 +30,17 @@ public class MarkController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response<List<Mark>>> getAllMarks(){
+    public ResponseEntity<Response<List<MarkResponseDTO>>> getAllMarks(){
         return markService.getAllMarks();
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Response<Mark>> addMark(@Valid @RequestBody MarkDTO markDTO) {
+    public ResponseEntity<Response<MarkResponseDTO>> addMark(@Valid @RequestBody MarkDTO markDTO) {
         return markService.addMark(markDTO);
     }
 
     @PutMapping("/update/{rollNumber}/{subjectCode}")
-    public ResponseEntity<Response<Mark>> updateMark(
+    public ResponseEntity<Response> updateMark(
             @Valid @RequestBody MarkUpdateDTO markUpdateDTO, @PathVariable String rollNumber, @PathVariable String subjectCode
     ) {
         return markService.updateMark(markUpdateDTO, rollNumber, subjectCode);
@@ -52,12 +52,12 @@ public class MarkController {
     }
 
     @GetMapping("/search/{rollNumber}")
-    public ResponseEntity<Response<List<Mark>>> search(@PathVariable String rollNumber) {
+    public ResponseEntity<Response<List<MarkResponseDTO>>> search(@PathVariable String rollNumber) {
         return markService.getMarksByRollNumber(rollNumber);
     }
 
     @GetMapping("/subject/{subjectCode}")
-    public ResponseEntity<Response<List<Mark>>> getMarksBySubjectCode(@PathVariable String subjectCode) {
+    public ResponseEntity<Response<List<MarkResponseDTO>>> getMarksBySubjectCode(@PathVariable String subjectCode) {
         return markService.getMarksBySubjectCode(subjectCode);
     }
 }

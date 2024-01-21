@@ -1,8 +1,8 @@
 package hdang09.controllers;
 
 import hdang09.dtos.requests.SubjectDTO;
+import hdang09.dtos.responses.SubjectResponseDTO;
 import hdang09.models.Response;
-import hdang09.entities.Subject;
 import hdang09.services.SubjectService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,17 +29,17 @@ public class SubjectController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response<List<Subject>>> getAllSubjects() {
+    public ResponseEntity<Response<List<SubjectResponseDTO>>> getAllSubjects() {
         return subjectService.getAllSubjects();
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response<Subject>> createSubject(@Valid @RequestBody SubjectDTO studentDTO) {
+    public ResponseEntity<Response<SubjectResponseDTO>> createSubject(@Valid @RequestBody SubjectDTO studentDTO) {
         return subjectService.createSubject(studentDTO);
     }
 
     @PutMapping("/update/{subjectId}")
-    public ResponseEntity<Response<Subject>> updateSubject(@Valid @RequestBody SubjectDTO studentDTO, @PathVariable UUID subjectId) {
+    public ResponseEntity<Response<SubjectResponseDTO>> updateSubject(@Valid @RequestBody SubjectDTO studentDTO, @PathVariable UUID subjectId) {
         return subjectService.updateSubject(studentDTO, subjectId);
     }
 
@@ -48,8 +48,8 @@ public class SubjectController {
         return subjectService.deleteSubject(subjectCode);
     }
 
-    @GetMapping("/search/{keyword}")
-    public ResponseEntity<Response<List<Subject>>> getSubjectsByKeyword(@PathVariable String keyword) {
+    @GetMapping("/search")
+    public ResponseEntity<Response<List<SubjectResponseDTO>>> getSubjectsByKeyword(@RequestParam String keyword) {
         return subjectService.getSubjectsByKeyword(keyword);
     }
 }

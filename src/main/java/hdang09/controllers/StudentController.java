@@ -1,8 +1,8 @@
 package hdang09.controllers;
 
 import hdang09.dtos.requests.StudentDTO;
+import hdang09.dtos.responses.StudentResponseDTO;
 import hdang09.models.Response;
-import hdang09.entities.Student;
 import hdang09.services.StudentService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,27 +29,29 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response<List<Student>>> getAllStudents() {
+    public ResponseEntity<Response<List<StudentResponseDTO>>> getAllStudents() {
         return studentService.getAllStudents();
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response<Student>> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<Response<StudentResponseDTO>> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
         return studentService.createStudent(studentDTO);
     }
 
     @PutMapping("/update/{studentId}")
-    public ResponseEntity<Response<Student>> updateStudent(@Valid @RequestBody StudentDTO studentDTO, @PathVariable UUID studentId) {
+    public ResponseEntity<Response<StudentResponseDTO>> updateStudent(
+            @Valid @RequestBody StudentDTO studentDTO, @PathVariable UUID studentId
+    ) {
         return studentService.updateStudent(studentDTO, studentId);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deleteStudent(String rollNumber) {
-        return studentService.deleteStudent(rollNumber);
+    @DeleteMapping("/delete/{studentId}")
+    public ResponseEntity<Response> deleteStudent(@PathVariable UUID studentId) {
+        return studentService.deleteStudent(studentId);
     }
 
-    @GetMapping("/search/{keyword}")
-    public ResponseEntity<Response<List<Student>>> getStudentsByKeyword(@PathVariable String keyword) {
+    @GetMapping("/search")
+    public ResponseEntity<Response<List<StudentResponseDTO>>> getStudentsByKeyword(@RequestParam String keyword) {
         return studentService.getStudentsByKeyword(keyword);
     }
 }

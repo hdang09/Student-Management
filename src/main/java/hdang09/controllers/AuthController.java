@@ -1,7 +1,7 @@
 package hdang09.controllers;
 
 import hdang09.dtos.requests.LoginDTO;
-import hdang09.dtos.responses.TokenDTO;
+import hdang09.dtos.responses.LoginResponseDTO;
 import hdang09.models.Response;
 import hdang09.services.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +23,7 @@ public class AuthController {
         this.authService = authService;
     }
     @PostMapping("/login")
-    public ResponseEntity<Response<TokenDTO>> login(@Valid @RequestBody LoginDTO account) {
+    public ResponseEntity<Response<LoginResponseDTO>> login(@Valid @RequestBody LoginDTO account) {
         return authService.login(account);
     }
 }

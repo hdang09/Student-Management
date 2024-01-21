@@ -23,4 +23,7 @@ public interface MarkRepository extends JpaRepository<Mark, MarkId> {
     @Query("UPDATE Mark m SET m.mark = ?3, m.note = ?4 WHERE m.student.rollNumber = ?1 AND m.subject.subjectCode = ?2")
     int updateMark(String rollNumber, String subjectCode, float mark, String note);
 
+    @Query("SELECT m FROM Mark m WHERE m.student.rollNumber = ?1")
+    List<Mark> findByRollNumber(String rollNumber);
+
 }

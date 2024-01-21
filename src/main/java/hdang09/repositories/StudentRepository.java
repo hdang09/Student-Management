@@ -20,11 +20,11 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
 
     @Query("SELECT s FROM Student s " +
             "WHERE s.fullName LIKE %?1% OR s.rollNumber LIKE %?1% OR s.idCard LIKE %?1% OR s.email LIKE %?1% " +
-            "OR s.phone LIKE %?1% OR s.address LIKE %?1%")
+            "OR s.phone LIKE %?1% OR s.address LIKE %?1% AND s.status = 'ACTIVE'")
     List<Student> search(String keyword);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Student s SET s.status = 'INACTIVE' WHERE s.rollNumber = ?1")
-    int deleteStudent(String rollNumber);
+    @Query("UPDATE Student s SET s.status = 'INACTIVE' WHERE s.studentId = ?1 AND s.status = 'ACTIVE'")
+    int deleteStudent(UUID studentId);
 }

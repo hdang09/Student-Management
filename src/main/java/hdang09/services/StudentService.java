@@ -1,5 +1,6 @@
 package hdang09.services;
 
+import hdang09.dtos.responses.StudentResponseDTO;
 import hdang09.enums.ResponseStatus;
 import hdang09.dtos.requests.StudentDTO;
 import hdang09.models.Response;
@@ -24,28 +25,36 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public ResponseEntity<Response<List<Student>>> getAllStudents() {
+    public ResponseEntity<Response<List<StudentResponseDTO>>> getAllStudents() {
+        // Get all students from database
         List<Student> students = studentRepository.getActiveStudents();
 
-        Response<List<Student>> response = new Response<>(ResponseStatus.SUCCESS, "Get all students successfully", students);
+        // Map students to StudentResponseDTO
+        List<StudentResponseDTO> studentResponseDTOs = StudentMapper.INSTANCE.toDTOs(students);
+
+        // Return response
+        Response<List<StudentResponseDTO>> response = new Response<>(ResponseStatus.SUCCESS, "Get all students successfully", studentResponseDTOs);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    public ResponseEntity<Response<Student>> createStudent(StudentDTO studentDTO) {
+    public ResponseEntity<Response<StudentResponseDTO>> createStudent(StudentDTO studentDTO) {
         // Save student to database
         Student student = StudentMapper.INSTANCE.toEntity(studentDTO);
         Student createdStudent = studentRepository.save(student);
 
-        Response<Student> response = new Response<>(ResponseStatus.SUCCESS, "Created", createdStudent);
+        // Map created student to StudentResponseDTO
+        StudentResponseDTO studentResponseDTO = StudentMapper.INSTANCE.toDTO(createdStudent);
+
+        // Return response
+        Response<StudentResponseDTO> response = new Response<>(ResponseStatus.SUCCESS, "Created", studentResponseDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // TODO: Test this function
-    public ResponseEntity<Response<Student>> updateStudent(StudentDTO studentDTO, UUID studentId) {
+    public ResponseEntity<Response<StudentResponseDTO>> updateStudent(StudentDTO studentDTO, UUID studentId) {
         // Check if student exists
         Student findStudent = studentRepository.findById(studentId).orElse(null);
         if (findStudent == null) {
-            Response<Student> response = new Response<>(ResponseStatus.ERROR, "Cannot find student");
+            Response<StudentResponseDTO> response = new Response<>(ResponseStatus.ERROR, "Cannot find student");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
@@ -54,13 +63,18 @@ public class StudentService {
         student.setStudentId(studentId);
         Student updateStudent = studentRepository.save(student);
 
-        Response<Student> response = new Response<>(ResponseStatus.SUCCESS, "Updated", updateStudent);
+        // Map updated student to StudentResponseDTO
+        StudentResponseDTO studentResponseDTO = StudentMapper.INSTANCE.toDTO(updateStudent);
+
+        // Return response
+        Response<StudentResponseDTO> response = new Response<>(ResponseStatus.SUCCESS, "Updated", studentResponseDTO);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     // TODO: Fix Response raw type
-    public ResponseEntity<Response> deleteStudent(String rollNumber) {
-        int numberOfDelete = studentRepository.deleteStudent(rollNumber);
+    public ResponseEntity<Response> deleteStudent(UUID studentId) {
+        // Delete student from database
+        int numberOfDelete = studentRepository.deleteStudent(studentId);
 
         // If student is found, set status to INACTIVE
         if (numberOfDelete != 0) {
@@ -73,10 +87,15 @@ public class StudentService {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-    public ResponseEntity<Response<List<Student>>> getStudentsByKeyword(String keyword) {
+    public ResponseEntity<Response<List<StudentResponseDTO>>> getStudentsByKeyword(String keyword) {
+        // Get students from database
         List<Student> students = studentRepository.search(keyword);
 
-        Response<List<Student>> response = new Response<>(ResponseStatus.SUCCESS, "Get all students successfully", students);
+        // Map students to StudentResponseDTO
+        List<StudentResponseDTO> studentResponseDTOs = StudentMapper.INSTANCE.toDTOs(students);
+
+        // Return response
+        Response<List<StudentResponseDTO>> response = new Response<>(ResponseStatus.SUCCESS, "Get all students successfully", studentResponseDTOs);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
