@@ -92,12 +92,18 @@ public class MarkService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
-        // Update mark
-        int updatedRows = markRepository.updateMark(rollNumber, subjectCode, markUpdateDTO.getMark(), markUpdateDTO.getNote());
-        if (updatedRows == 0) {
+        // Find mark
+        Mark mark = markRepository.findByRollNumberAndSubjectCode(rollNumber, subjectCode);
+        if (mark == null) {
             Response response = new Response<>(ResponseStatus.ERROR, "Update mark failed");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
+
+        // Update mark
+        mark.setUpdateDate(LocalDateTime.now());
+        mark.setMark(markUpdateDTO.getMark());
+        mark.setNote(markUpdateDTO.getNote());
+        markRepository.save(mark);
 
         // Return response
         Response response = new Response<>(ResponseStatus.SUCCESS, "Update mark successfully!");
@@ -106,7 +112,8 @@ public class MarkService {
 
     public ResponseEntity<Response> deleteMark(MarkDeleteDTO markDeleteDTO) {
         // Delete mark
-        markRepository.deleteMark(markDeleteDTO.getRollNumber(), markDeleteDTO.getSubjectCode());
+        Mark mark = markRepository.findByRollNumberAndSubjectCode(markDeleteDTO.getRollNumber(), markDeleteDTO.getSubjectCode());
+        markRepository.delete(mark);
 
         // Return response
         Response response = new Response(ResponseStatus.SUCCESS, "Delete mark successfully", null);
