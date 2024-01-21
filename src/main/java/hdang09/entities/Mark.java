@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 @IdClass(MarkId.class)
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class Mark {
 
     @Id

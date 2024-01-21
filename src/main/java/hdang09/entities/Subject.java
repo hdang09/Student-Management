@@ -11,9 +11,7 @@ import java.util.UUID;
 @Table(name = "subject")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class Subject {
 
     @Id

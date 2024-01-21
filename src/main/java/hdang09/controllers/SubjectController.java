@@ -43,9 +43,9 @@ public class SubjectController {
         return subjectService.updateSubject(studentDTO, subjectId);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deleteSubject(String subjectCode) {
-        return subjectService.deleteSubject(subjectCode);
+    @DeleteMapping("/delete/{subjectId}")
+    public ResponseEntity<Response> deleteSubject(@PathVariable UUID subjectId) {
+        return subjectService.deleteSubject(subjectId);
     }
 
     @GetMapping("/search")

@@ -72,9 +72,9 @@ public class SubjectService {
     }
 
     // TODO: Fix Response raw type
-    public ResponseEntity<Response> deleteSubject(String subjectCode) {
+    public ResponseEntity<Response> deleteSubject(UUID subjectId) {
         // Delete subject from database
-        int numberOfDelete = subjectRepository.deleteSubject(subjectCode);
+        int numberOfDelete = subjectRepository.deleteSubject(subjectId);
 
         // If subject is found, set status to INACTIVE
         if (numberOfDelete != 0) {

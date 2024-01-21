@@ -24,6 +24,6 @@ public interface SubjectRepository extends JpaRepository<Subject, UUID> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Subject s SET s.status = 'INACTIVE' WHERE s.subjectCode = ?1")
-    int deleteSubject(String subjectCode);
+    @Query("UPDATE Subject s SET s.status = 'INACTIVE' WHERE s.subjectId = ?1")
+    int deleteSubject(UUID subjectId);
 }

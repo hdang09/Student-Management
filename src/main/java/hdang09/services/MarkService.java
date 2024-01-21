@@ -1,6 +1,7 @@
 package hdang09.services;
 
 import hdang09.dtos.responses.MarkResponseDTO;
+import hdang09.entities.MarkId;
 import hdang09.enums.ResponseStatus;
 import hdang09.dtos.requests.MarkDTO;
 import hdang09.dtos.requests.MarkDeleteDTO;
@@ -75,18 +76,19 @@ public class MarkService {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    // TODO: Fix bug this function
     public ResponseEntity<Response> updateMark(MarkUpdateDTO markUpdateDTO, String rollNumber, String subjectCode) {
         // Find student
-        Student student = studentRepository.findByRollNumber(rollNumber);
-        if (student == null) {
-            Response response = new Response<>(ResponseStatus.ERROR, "Student not found");
+        List<Mark> students = markRepository.findByRollNumber(rollNumber);
+        if (students == null) {
+            Response response = new Response<>(ResponseStatus.ERROR, "Student not found in mark list");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
         // Find subject
         Subject subject =  subjectRepository.findBySubjectCode(subjectCode);
         if (subject == null) {
-            Response response = new Response<>(ResponseStatus.ERROR, "Subject not found");
+            Response response = new Response<>(ResponseStatus.ERROR, "Subject not found in mark list");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 

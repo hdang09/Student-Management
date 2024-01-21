@@ -26,7 +26,7 @@ public class Student {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "roll_number")
+    @Column(name = "roll_number", unique = true)
     private String rollNumber;
 
     @Column(name = "gender")
@@ -36,7 +36,7 @@ public class Student {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "id_card")
+    @Column(name = "id_card", unique = true)
     private String idCard;
 
     @Column(name = "email")

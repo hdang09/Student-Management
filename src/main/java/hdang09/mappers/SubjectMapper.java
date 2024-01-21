@@ -12,9 +12,9 @@ import java.util.List;
 public interface SubjectMapper {
     SubjectMapper INSTANCE = Mappers.getMapper(SubjectMapper.class);
 
-    Subject toEntity(SubjectDTO studentDTO);
+    Subject toEntity(SubjectDTO subjectDTO);
 
-    SubjectResponseDTO toDTO(Subject student);
+    SubjectResponseDTO toDTO(Subject subject);
 
     List<SubjectResponseDTO> toDTOs(List<Subject> subjects);
 }

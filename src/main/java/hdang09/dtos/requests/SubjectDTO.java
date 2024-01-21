@@ -1,5 +1,6 @@
 package hdang09.dtos.requests;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,6 @@ public class SubjectDTO {
 
     private String description;
 
-    @NotBlank(message = "Credit number is required")
+    @Min(value = 1, message = "Credit number must be greater than 0")
     private int creditNumber;
 }
